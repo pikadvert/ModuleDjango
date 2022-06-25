@@ -1,0 +1,6 @@
+db.sqlite3
+/venv/*
+/.idea/*
+/myapp/__pycache__/*
+/online_store/__pycache__/*
+**/__pycache__
