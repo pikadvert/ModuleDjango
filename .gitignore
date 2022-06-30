@@ -4,3 +4,4 @@ db.sqlite3
 /myapp/__pycache__/*
 /online_store/__pycache__/*
 **/__pycache__
+/images/*

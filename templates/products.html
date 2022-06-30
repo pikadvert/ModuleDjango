@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+         .card {
+    display: inline-block;
+    text-align: center;
+    border:2px solid blue;
+    width: 600px;
+    height: 420px;
+    flex-wrap: none;
+    margin-left: 17px;
+    margin-top: 20px;
+    margin-right: auto;
+    position: relative;
+    left: 15%;
+    background-color: white;
+
+    }
+    .card-img-top {
+    margin-top: 10px;
+<!--border:2px solid gray;-->
+    width: 250px;
+    height: 250px;
+    position: center;
+    right: auto;
+    top: 5px;
+    -webkit-transition: -webkit-transform .2s ease-in-out;
+    transition: transform .2s ease-in-out;
+
+}
+.card-img-top:hover {
+    -webkit-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+}
+.buy {
+    background: aqua;
+    border:1px solid gray;
+    transition: background 0.2s linear;
+    transition:color;
+
+}
+
+.buy:hover{
+    background: gray;
+    color:white;
+
+}
+.card-body {
+margin-top: -15px;
+}
+    </style>
+</head>
+<body>
+   {% extends 'base.html' %}
+   {% block content %}
+   {% for product in products %}
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{ product.image }}" alt="Card image">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.productname }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+        <p class="card-text">Price - {{ product.price }} UAH</p>
+        <p class="card-text">Quantity - {{ product.quantity }}</p>
+         <form method="post" action="{% url 'purchase' %}">
+                {% csrf_token %}
+                <input type="hidden" name="pk" value="{{product.pk}}">
+                <input type="number" value="1" name="quantity" min="1" max="{{Product.quantity}}">
+                <input class="buy" type="submit" value="BUY NOW" >
+            </form>
+
+      </div>
+
+    </div>
+    {% endfor %}
+   {% endblock %}
+</body>
+</html>
